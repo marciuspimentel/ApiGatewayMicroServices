@@ -1,0 +1,5 @@
+http://localhost:59900/ --Api Gateway
+http://localhost:59905/ --Correios
+http://localhost:59906/ --Auth
+http://localhost:59907/ --Cotacao Geral
+http://localhost:59908/ --GRPC

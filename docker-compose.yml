@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  mf.example.gateway:
+    image: ${DOCKER_REGISTRY-}mfexamplegateway
+    build:
+      context: .
+      dockerfile: MF.Example.Gateway/Dockerfile
+
+  mf.example.geral:
+    image: ${DOCKER_REGISTRY-}mfexamplegeral
+    build:
+      context: .
+      dockerfile: MF.Example.Geral/Dockerfile
+
+  mf.example.correios:
+    image: ${DOCKER_REGISTRY-}mfexamplecorreios
+    build:
+      context: .
+      dockerfile: MF.Example.Correios/Dockerfile
+
+  mf.example.grpc:
+    image: ${DOCKER_REGISTRY-}mfexamplegrpc
+    build:
+      context: .
+      dockerfile: MF.Example.Grpc/Dockerfile

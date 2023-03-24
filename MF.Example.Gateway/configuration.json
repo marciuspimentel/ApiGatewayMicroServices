@@ -1,0 +1,48 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/cotacao",
+      "DownstreamScheme": "http",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mf.example.geral",
+          "Port": 80
+        }
+      ],
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/cotacao",
+      "Key": "geral"
+    },
+    {
+      "DownstreamPathTemplate": "/cotacaocorreios",
+      "DownstreamScheme": "http",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mf.example.correios",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/cotacaocorreios",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "correios"
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "geral",
+        "correios"
+      ],
+      "UpstreamPathTemplate": "/agrupada",
+      "Aggregator": "ConcatenateAggregator"
+    }
+  ],
+  "DelegatingHandlers": [
+    "BlackListHandler"
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:59900"
+  }
+}

@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+  mf.example.gateway:
+    container_name:  mf.example.gateway
+    build:
+      context: .
+      dockerfile: ./MF.Example.Gateway/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "GrpcSettings:CotacaoUrl=mf.example.grpc"
+    ports:
+      - "7000:80"
+    networks:
+      - minha-rede
+    depends_on:
+      - "mf.example.geral"
+      - "mf.example.correios" 
+      - "mf.example.grpc"
+
+  mf.example.geral:
+    container_name: mf.example.geral
+    build:
+      context: .
+      dockerfile: ./MF.Example.Geral/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7001:80"
+    networks:
+      - minha-rede
+
+  mf.example.correios:
+    container_name: mf.example.correios
+    build:
+      context: .
+      dockerfile: ./MF.Example.Correios/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7002:80"
+    networks:
+      - minha-rede
+ 
+  mf.example.grpc:
+    container_name: mf.example.grpc
+    build:
+      context: .
+      dockerfile: ./MF.Example.Grpc/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7003:80"
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge

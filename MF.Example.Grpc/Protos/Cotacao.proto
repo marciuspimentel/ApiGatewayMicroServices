@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "MF.Example.Grpc.Protos";
+
+service CotacaoProtoService{
+	rpc GetCotacao(GetCotacaoRequest) returns (CotacaoDto);
+}
+
+message GetCotacaoRequest{
+	string token = 1;
+}
+
+message CotacaoDto{
+	string cotacao = 1;
+	string token = 2;
+	string cepOrigem = 3;
+	string cepDestino = 4;
+	int32 quantidade = 5;
+	string freteTipo = 6;
+	int32 prazo = 7;
+	double valor = 8;
+}
